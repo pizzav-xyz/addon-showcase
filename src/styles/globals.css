@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: #0a0a0f;
+  color: white;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff6b35;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e63946;
+}
+
+::selection {
+  background: #ff6b35;
+  color: white;
+}
+
+/* ===== meteor-web accent patch: RGB(255,175,0) = oklch(0.81 0.17 76) ===== */
+:root {
+  --app-accent: oklch(0.81 0.17 76);
+  --app-accent-strong: color-mix(in oklab, var(--app-accent) 100%, white 6%);
+  --app-accent-soft: color-mix(in oklab, var(--app-accent) 72%, black);
+  --app-accent-deep: color-mix(in oklab, var(--app-accent) 32%, black);
+  --app-accent-shadow: color-mix(in oklab, var(--app-accent) 14%, black);
+  --app-accent-surface: color-mix(in oklab, var(--app-accent) 18%, black);
+  --app-accent-surface-2: color-mix(in oklab, var(--app-accent) 24%, black);
+  --app-accent-surface-3: color-mix(in oklab, var(--app-accent) 32%, black);
+  --app-accent-border: color-mix(in oklab, var(--app-accent) 34%, black);
+  --app-accent-text: color-mix(in oklab, var(--app-accent) 12%, white);
+  --app-accent-text-muted: color-mix(in oklab, var(--app-accent) 26%, white);
+
+  --meteor-purple: var(--app-accent);
+  --meteor-purple-soft: var(--app-accent-soft);
+
+  --window-bg: var(--app-accent-shadow);
+  --window-row: var(--app-accent-surface);
+  --window-row-hover: var(--app-accent-surface-3);
+  --window-border: var(--app-accent-border);
+
+  --header-text: color-mix(in oklab, var(--app-accent) 8%, white);
+  --row-text: var(--app-accent-text-muted);
+  --row-text-active: var(--app-accent);
+  --help-text: var(--app-accent);
+}
+
+/* Tailwind color references for meteor-web components */
+@layer utilities {
+  .text-meteor-purple { color: var(--meteor-purple); }
+  .bg-meteor-purple { background-color: var(--meteor-purple); }
+  .border-meteor-purple { border-color: var(--meteor-purple); }
+  .bg-window-bg { background-color: var(--window-bg); }
+  .bg-window-row { background-color: var(--window-row); }
+  .bg-window-row-hover { background-color: var(--window-row-hover); }
+  .border-window-border { border-color: var(--window-border); }
+  .text-header-text { color: var(--header-text); }
+  .text-row-text { color: var(--row-text); }
+  .text-row-text-active { color: var(--row-text-active); }
+  .text-help-text { color: var(--help-text); }
+  .bg-input { background-color: var(--app-accent-surface-2); }
+  .text-muted-foreground { color: color-mix(in oklab, var(--app-accent) 18%, white); }
+}
+
+/* Meteor-web background */
+.mc-bg {
+  background:
+    radial-gradient(ellipse at 30% 20%, color-mix(in oklab, var(--app-accent) 34%, transparent) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 80%, color-mix(in oklab, var(--app-accent) 26%, transparent) 0%, transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, var(--app-accent) 16%, black) 0%, color-mix(in oklab, var(--app-accent) 10%, black) 100%);
+  position: relative;
+}
+
+/* Window header gradient */
+.header-gradient {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--app-accent) 100%, white 6%) 0%,
+    color-mix(in oklab, var(--app-accent) 84%, black) 100%
+  );
+}
+
+/* Active accent strip */
+.accent-strip {
+  box-shadow: inset 3px 0 0 0 var(--meteor-purple);
+}
+
+/* Scrollbars for meteor-web */
+.thin-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.thin-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--app-accent) 44%, black);
+  border-radius: 3px;
+}
+.thin-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--meteor-purple);
+}
+
+/* Window animation */
+@keyframes window-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.window-in {
+  animation: window-in 0.2s ease-out;
+}

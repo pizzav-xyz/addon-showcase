@@ -1,0 +1,3 @@
+[submodule "meteor-web"]
+	path = meteor-web
+	url = https://github.com/pizzav-xyz/meteor-web.git
