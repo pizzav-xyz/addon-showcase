@@ -1,4 +1,4 @@
-import { Github, Twitter, MessageCircle } from 'lucide-react';
+import { Github } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -15,15 +15,9 @@ export function Footer() {
           </div>
 
           <div className="flex gap-4">
-            <a href="https://github.com/pizzav-xyz/meteor-web" target="_blank" rel="noopener noreferrer"
+            <a href="https://github.com/pizzav-xyz/addon-showcase" target="_blank" rel="noopener noreferrer"
                className="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors text-gray-400 hover:text-white">
               <Github size={20} />
-            </a>
-            <a href="#" className="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors text-gray-400 hover:text-white">
-              <Twitter size={20} />
-            </a>
-            <a href="#" className="p-2 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors text-gray-400 hover:text-white">
-              <MessageCircle size={20} />
             </a>
           </div>
         </div>
