@@ -4,10 +4,8 @@ import { TypeAnimation } from 'react-type-animation';
 import { Download, ChevronDown } from 'lucide-react';
 import { GlitchText } from './GlitchText';
 import { GlitchPopup } from './GlitchPopup';
-import { useAppStore } from '../store/appStore';
 
 export function Hero() {
-  const { incrementClick } = useAppStore();
   const [showPopup, setShowPopup] = useState(false);
 
   return (
@@ -62,7 +60,7 @@ export function Hero() {
             href="#features"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={(e) => { e.preventDefault(); incrementClick(); setShowPopup(true); }}
+            onClick={(e) => { e.preventDefault(); setShowPopup(true); }}
             className="px-8 py-4 bg-pizza-orange text-white font-display font-bold rounded-lg
                        hover:bg-pizza-red transition-colors flex items-center justify-center gap-2
                        shadow-lg shadow-pizza-orange/30 cursor-pointer"

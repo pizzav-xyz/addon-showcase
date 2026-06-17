@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import CountUp from 'react-countup';
+import { useEffect, useRef } from 'react';
 
 const stats = [
   { label: 'Features That Work', value: 25, suffix: '%', color: 'text-pizza-orange' },
@@ -8,6 +8,25 @@ const stats = [
   { label: 'BrewHack Users Triggered', value: 100, suffix: '%', color: 'text-hack-green' },
   { label: 'Credits Given to TrouserStreak', value: 0, suffix: '%', color: 'text-hack-purple' },
 ];
+
+function CountUp({ end, start }: { end: number; start: boolean }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const motionVal = useMotionValue(0);
+  const rounded = useTransform(motionVal, (v) => Math.round(v));
+
+  useEffect(() => {
+    if (start) animate(motionVal, { to: end, duration: 2 });
+  }, [start, end, motionVal]);
+
+  useEffect(() => {
+    const unsub = rounded.on('change', (v) => {
+      if (ref.current) ref.current.textContent = String(v);
+    });
+    return unsub;
+  }, [rounded]);
+
+  return <span ref={ref}>0</span>;
+}
 
 export function StatsSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -34,7 +53,7 @@ export function StatsSection() {
               className="text-center"
             >
               <div className={`text-4xl md:text-5xl font-display font-bold ${stat.color} mb-2`}>
-                {inView && <CountUp end={stat.value} duration={2} />}{stat.suffix}
+                <CountUp end={stat.value} start={inView} />{stat.suffix}
               </div>
               <p className="text-gray-400 text-sm">{stat.label}</p>
             </motion.div>
