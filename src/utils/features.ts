@@ -53,7 +53,7 @@ export const features: Feature[] = [
   {
     id: 'predictionless',
     name: 'Predictionless',
-    description: 'No prediction needed! Unlike shitty BrewHack, we gave up on prediction entirely.',
+    description: 'No prediction needed! Disables hacks automatically when your enemy moves, because standing still is the real skill issue. Unlike shitty BrewHack, we gave up on prediction entirely.',
     reliability: 50,
     icon: Brain,
     stolen: false,
